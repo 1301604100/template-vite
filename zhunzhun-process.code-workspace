@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "taluo-app-backend",
+      "path": "../taluo-app-backend",
+    },
+    {
+      "name": "tarot-android",
+      "path": "../tarot-android",
+    },
+    {
+      "name": "zhunzhun-process",
+      "path": ".",
+    },
+  ],
+  "settings": {},
+}

@@ -1,17 +1,19 @@
 import axios from 'axios';
+import { useUserStore } from '@/store/user';
 
 const Request = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 /**
- * 请求拦截器
- * 功能：配置请求头
+ * @description 请求拦截器 — 自动携带 session_token
  */
 Request.interceptors.request.use(
   (config) => {
-    const token = '222';
-    config.headers.authorization = 'Bearer ' + token;
+    const userStore = useUserStore();
+    if (userStore.sessionToken) {
+      config.headers.authorization = 'Bearer ' + userStore.sessionToken;
+    }
     return config;
   },
   (error) => {
@@ -21,8 +23,7 @@ Request.interceptors.request.use(
 );
 
 /**
- * 响应拦截器
- * 功能：处理异常
+ * @description 响应拦截器 — 处理异常
  */
 Request.interceptors.response.use(
   (config) => {

@@ -9,5 +9,18 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
+    <script>
+      (function () {
+        var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+        function resize() {
+          var docEl = document.documentElement;
+          var width = docEl.clientWidth;
+          var rem = width > 750 ? 37.5 : width * 0.1;
+          docEl.style.fontSize = rem + 'px';
+        }
+        window.addEventListener(resizeEvt, resize, false);
+        resize();
+      })();
+    </script>
   </body>
 </html>

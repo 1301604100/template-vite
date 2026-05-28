@@ -1,0 +1,41 @@
+schema: spec-driven
+
+context: |
+  项目名称: zhunzhun-process (准准流程演示)
+  项目目的: 使用 H5 页面复刻 App 核心流程（如登录、注册等），用于向产品经理演示交互流程
+  
+  技术栈:
+    - Vue 3 + TypeScript + Vite
+    - Composition API + <script setup>
+    - Vant 4 (移动端 UI 组件库)
+    - Vue Router 4 (Hash 模式)
+    - Pinia (状态管理)
+    - Axios (HTTP 请求)
+    - SCSS (样式预处理)
+    - postcss-plugin-px2rem (rootValue: 75, 750px 设计稿适配)
+    - unplugin-auto-import + unplugin-vue-components (自动导入)
+  
+  项目约定:
+    - 使用 conventional commits 规范
+    - 路径别名: @ -> src/
+    - 页面放在 src/pages/ 目录
+    - 组件放在 src/components/ 目录
+    - API 请求放在 src/api/ 目录
+    - 工具函数放在 src/utils/ 目录
+    - 类型定义放在 src/types/ 目录
+    - 设计稿宽度 750px，使用 px 编写样式，自动转换为 rem
+  
+  注意事项:
+    - 这是演示项目，不需要真实后端接口，可使用 mock 数据
+    - 重点是流程和交互的还原，而非功能实现
+    - 页面样式需要尽量还原 App 的视觉效果
+
+rules:
+  proposal:
+    - 用中文描述
+    - 明确要复刻的 App 流程范围
+    - 说明涉及的页面和交互步骤
+  tasks:
+    - 用中文描述
+    - 每个任务对应一个独立页面或功能模块
+    - 任务粒度控制在 1-2 小时内可完成
