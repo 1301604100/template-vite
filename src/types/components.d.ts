@@ -14,6 +14,8 @@ declare module 'vue' {
     ChatMessageBubble: typeof import('./../components/im/ChatMessageBubble.vue')['default']
     ChatSessionItem: typeof import('./../components/im/ChatSessionItem.vue')['default']
     DemoEntryCard: typeof import('./../components/demo/DemoEntryCard.vue')['default']
+    HomeBannerSwipe: typeof import('./../components/home/HomeBannerSwipe.vue')['default']
+    HomeKingKongGrid: typeof import('./../components/home/HomeKingKongGrid.vue')['default']
     PrivacyAgreementSheet: typeof import('./../components/splash/PrivacyAgreementSheet.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -29,6 +31,8 @@ declare module 'vue' {
     VanNavBar: typeof import('vant/es')['NavBar']
     VanPopup: typeof import('vant/es')['Popup']
     VanPullRefresh: typeof import('vant/es')['PullRefresh']
+    VanSwipe: typeof import('vant/es')['Swipe']
+    VanSwipeItem: typeof import('vant/es')['SwipeItem']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
   }

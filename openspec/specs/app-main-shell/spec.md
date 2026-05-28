@@ -1,4 +1,10 @@
-## ADDED Requirements
+# app-main-shell Specification
+
+## Purpose
+
+定义 App 主框架（`/app`）的底部 Tab 导航与各 Tab 页内容规范，复刻 Android MainActivity 的四 Tab 结构。
+
+## Requirements
 
 ### Requirement: App 主框架底部 Tab 导航
 
@@ -24,14 +30,29 @@
 - **WHEN** 未登录用户访问 `/app` 或其子路由
 - **THEN** 系统拦截并导航至 `/login/one-key`，携带 redirect 参数
 
-### Requirement: 首页 Tab 占位
+### Requirement: 首页 Tab 完整布局
 
-系统 MUST 在首页 Tab 提供占位内容，标识当前处于 App 主框架。
+系统 MUST 在首页 Tab 提供完整首页布局，包含顶部品牌区、金刚位和活动 Banner。
 
 #### Scenario: 首页 Tab 展示
 
 - **WHEN** 用户切换到「首页」Tab
-- **THEN** 系统展示欢迎占位内容，表明已进入 App 主框架
+- **THEN** 系统展示深色主题首页，包含顶部「准准」品牌 + 「准准日签」入口、可左右滑动的金刚位功能网格和活动轮播 Banner
+
+#### Scenario: 顶部日签入口
+
+- **WHEN** 用户查看首页顶部区域
+- **THEN** 系统展示「准准日签」按钮及「免费」角标
+
+#### Scenario: 点击日签入口
+
+- **WHEN** 用户点击「准准日签」按钮
+- **THEN** 系统 Toast 提示「准准日签演示中」
+
+#### Scenario: 首页加载状态
+
+- **WHEN** 首页 Tab 数据尚未加载完成
+- **THEN** 系统展示加载中状态
 
 ### Requirement: 问答 Tab 占位
 
