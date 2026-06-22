@@ -1,10 +1,4 @@
-# app-home-consult Specification
-
-## Purpose
-
-定义 App 首页 1v1 咨询达人列表的展示与 Mock 数据规范。
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: 1v1 咨询区块展示
 
@@ -34,17 +28,3 @@
 
 - **WHEN** 用户点击 1v1 咨询「更多」
 - **THEN** 系统导航至 `/app/qa` 咨询 Tab
-
-### Requirement: 咨询 Mock 数据
-
-系统 MUST 使用 Mock 数据模拟 1v1 咨询达人列表。
-
-#### Scenario: Mock 数据加载
-
-- **WHEN** 首页 Tab 初始化
-- **THEN** 系统调用 Mock 接口获取达人列表，至少返回 3 条记录
-
-#### Scenario: 数据字段
-
-- **WHEN** Mock 返回达人数据
-- **THEN** 每项包含 expert_id、expert_name、online_status、good_rate、service_count、price_per_minute 字段

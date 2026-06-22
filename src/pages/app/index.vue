@@ -2,6 +2,9 @@
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+/** 四个 Tab 页组件名，与路由 name 一致，供 keep-alive 缓存 */
+const TAB_KEEP_ALIVE_NAMES = ['AppHome', 'AppQa', 'AppMessage', 'AppMine'];
+
 const route = useRoute();
 const router = useRouter();
 
@@ -28,11 +31,15 @@ function handleTabChange(index: number) {
 <template>
   <div class="app-shell">
     <div class="app-content">
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <keep-alive :include="TAB_KEEP_ALIVE_NAMES">
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </div>
     <van-tabbar v-model="activeTab" fixed placeholder @change="handleTabChange">
       <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item icon="question-o">问答</van-tabbar-item>
+      <van-tabbar-item icon="question-o">咨询</van-tabbar-item>
       <van-tabbar-item icon="chat-o">消息</van-tabbar-item>
       <van-tabbar-item icon="user-o">我的</van-tabbar-item>
     </van-tabbar>
@@ -41,12 +48,17 @@ function handleTabChange(index: number) {
 
 <style scoped lang="scss">
 .app-shell {
-  min-height: 100vh;
-  background: #f7f8fa;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #1a1033;
 }
 
 .app-content {
-  min-height: 100vh;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
   padding-bottom: env(safe-area-inset-bottom);
 }
 </style>

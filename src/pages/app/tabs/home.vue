@@ -2,6 +2,8 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { showToast } from 'vant';
+
+defineOptions({ name: 'AppHome' });
 import {
   getConsultExperts,
   getDailyFortune,
@@ -84,11 +86,11 @@ function handleLiveMore() {
 }
 
 function handleConsultClick(item: ConsultExpertItem) {
-  showToast(`咨询 ${item.expert_name} 演示中`);
+  router.push(`/im/chat/${item.expert_id}`);
 }
 
 function handleConsultMore() {
-  showToast('1v1 咨询列表演示中');
+  router.push('/app/qa');
 }
 
 onMounted(() => {
@@ -145,6 +147,7 @@ onMounted(() => {
 
 .home-page {
   height: calc(100vh - 100px);
+  overflow: hidden;
   background: $dark-bg;
   display: flex;
   flex-direction: column;
@@ -152,6 +155,7 @@ onMounted(() => {
 
 .home-scroll {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding-top: env(safe-area-inset-top);

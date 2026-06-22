@@ -56,7 +56,7 @@
 
 系统 MUST 在聊天室提供顶部导航操作。
 
-#### Scenario: 返回消息列表
+#### Scenario: 返回来源页
 
 - **WHEN** 用户点击聊天室返回按钮
-- **THEN** 系统导航至 `/im/list`
+- **THEN** 系统通过 `router.back()` 返回进入聊天前的页面；无历史记录时 fallback 至 `/app/message`

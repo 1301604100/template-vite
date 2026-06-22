@@ -13,6 +13,8 @@ declare module 'vue' {
     ChatInputBar: typeof import('./../components/im/ChatInputBar.vue')['default']
     ChatMessageBubble: typeof import('./../components/im/ChatMessageBubble.vue')['default']
     ChatSessionItem: typeof import('./../components/im/ChatSessionItem.vue')['default']
+    ConsultExpertCard: typeof import('./../components/consult/ConsultExpertCard.vue')['default']
+    ConsultFilterPopup: typeof import('./../components/consult/ConsultFilterPopup.vue')['default']
     DemoEntryCard: typeof import('./../components/demo/DemoEntryCard.vue')['default']
     HomeBannerSwipe: typeof import('./../components/home/HomeBannerSwipe.vue')['default']
     HomeConsultSection: typeof import('./../components/home/HomeConsultSection.vue')['default']

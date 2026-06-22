@@ -74,8 +74,15 @@ async function handleSend(content: string) {
   }
 }
 
+/**
+ * @description 返回上一页（首页/咨询 Tab/消息 Tab 等来源页）
+ */
 function handleBack() {
-  router.push('/app/message');
+  if (window.history.state?.back) {
+    router.back();
+  } else {
+    router.push('/app/message');
+  }
 }
 
 onMounted(() => {

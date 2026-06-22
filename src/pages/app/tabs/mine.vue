@@ -3,6 +3,8 @@ import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/user';
 import { showToast } from 'vant';
 
+defineOptions({ name: 'AppMine' });
+
 const router = useRouter();
 const userStore = useUserStore();
 
@@ -21,29 +23,41 @@ function goSandbox() {
   <div class="mine-tab">
     <div class="tab-header">我的</div>
 
-    <div class="user-card">
-      <van-image
-        round
-        width="120px"
-        height="120px"
-        :src="userStore.userInfo?.avatar"
-        fit="cover"
-      />
-      <div class="user-name">{{ userStore.userInfo?.nickname ?? '塔罗用户' }}</div>
-      <div class="user-phone">{{ userStore.userInfo?.phone_num ?? '' }}</div>
-    </div>
+    <div class="tab-scroll">
+      <div class="user-card">
+        <van-image
+          round
+          width="120px"
+          height="120px"
+          :src="userStore.userInfo?.avatar"
+          fit="cover"
+        />
+        <div class="user-name">{{ userStore.userInfo?.nickname ?? '塔罗用户' }}</div>
+        <div class="user-phone">{{ userStore.userInfo?.phone_num ?? '' }}</div>
+      </div>
 
-    <van-cell-group inset class="action-group">
-      <van-cell title="演示沙盒" is-link label="独立体验各演示模块" @click="goSandbox" />
-      <van-cell title="退出登录" is-link @click="handleLogout" />
-    </van-cell-group>
+      <van-cell-group inset class="action-group">
+        <van-cell title="演示沙盒" is-link label="独立体验各演示模块" @click="goSandbox" />
+        <van-cell title="退出登录" is-link @click="handleLogout" />
+      </van-cell-group>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .mine-tab {
-  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: #f7f8fa;
+}
+
+.tab-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tab-header {

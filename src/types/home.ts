@@ -71,6 +71,10 @@ export interface ConsultExpertItem {
   service_count: number;
   description: string;
   price_per_minute: number;
+  /** 性别 */
+  gender: '男' | '女';
+  /** 语音介绍时长（秒） */
+  voice_duration: number;
   /** 认证标签 */
   badge?: string;
 }

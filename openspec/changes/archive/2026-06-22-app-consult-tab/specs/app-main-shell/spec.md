@@ -1,10 +1,4 @@
-# app-main-shell Specification
-
-## Purpose
-
-定义 App 主框架（`/app`）的底部 Tab 导航与各 Tab 页内容规范，复刻 Android MainActivity 的四 Tab 结构。
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: App 主框架底部 Tab 导航
 
@@ -36,34 +30,15 @@
 - **WHEN** 未登录用户访问 `/app` 或其子路由
 - **THEN** 系统拦截并导航至 `/login/one-key`，携带 redirect 参数
 
-### Requirement: 首页 Tab 完整布局
+## REMOVED Requirements
 
-系统 MUST 在首页 Tab 提供完整首页布局，包含顶部品牌区、金刚位、活动 Banner、今日运势、在线直播和 1v1 咨询模块。
+### Requirement: 问答 Tab 占位
 
-#### Scenario: 首页 Tab 展示
+**Reason**: 问答 Tab 已替换为 1v1 咨询列表页
 
-- **WHEN** 用户切换到「首页」Tab
-- **THEN** 系统展示深色主题可滚动首页，包含顶部「准准」品牌 + 「准准日签」入口、可左右滑动的金刚位、活动轮播 Banner、今日运势卡片、在线直播区块和 1v1 咨询区块
+**Migration**: 原 `/app/qa` 路由保留，内容改为咨询 Tab 列表
 
-#### Scenario: 顶部日签入口
-
-- **WHEN** 用户查看首页顶部区域
-- **THEN** 系统展示「准准日签」按钮及「免费」角标
-
-#### Scenario: 点击日签入口
-
-- **WHEN** 用户点击「准准日签」按钮
-- **THEN** 系统 Toast 提示「准准日签演示中」
-
-#### Scenario: 首页加载状态
-
-- **WHEN** 首页 Tab 数据尚未加载完成
-- **THEN** 系统展示加载中状态
-
-#### Scenario: 首页纵向滚动
-
-- **WHEN** 首页内容超出视口高度
-- **THEN** 系统允许用户纵向滚动浏览 Banner 以下全部模块
+## ADDED Requirements
 
 ### Requirement: 咨询 Tab 完整内容
 
@@ -92,22 +67,3 @@
 
 - **WHEN** 用户在聊天室点击返回
 - **THEN** 系统通过 `router.back()` 返回进入聊天前的页面（首页、咨询 Tab 或消息 Tab）；无历史记录时 fallback 至 `/app/message`
-
-### Requirement: 我的 Tab 用户中心
-
-系统 MUST 在「我的」Tab 展示用户信息与操作入口。
-
-#### Scenario: 展示用户信息
-
-- **WHEN** 已登录用户切换到「我的」Tab
-- **THEN** 系统展示用户头像、昵称和手机号
-
-#### Scenario: 退出登录
-
-- **WHEN** 用户点击「退出登录」
-- **THEN** 系统清除登录态，导航至 `/splash` 重新进入冷启动流程
-
-#### Scenario: 进入演示沙盒
-
-- **WHEN** 用户点击「演示沙盒」入口
-- **THEN** 系统导航至 `/home` 演示首页
