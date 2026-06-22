@@ -1,10 +1,4 @@
-# app-home-live Specification
-
-## Purpose
-
-定义 App 首页在线直播区块的展示与 Mock 数据规范。
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: 在线直播区块展示
 
@@ -29,17 +23,3 @@
 
 - **WHEN** 用户点击在线直播「更多」
 - **THEN** 系统导航至 `/live/list` 全部直播页
-
-### Requirement: 直播 Mock 数据
-
-系统 MUST 使用 Mock 数据模拟在线直播列表。
-
-#### Scenario: Mock 数据加载
-
-- **WHEN** 首页 Tab 初始化
-- **THEN** 系统调用 Mock 接口获取直播列表，至少返回 2 条记录
-
-#### Scenario: 数据字段
-
-- **WHEN** Mock 返回直播数据
-- **THEN** 每项包含 id、title、cover_url、category、expert_name、expert_avatar、status 字段

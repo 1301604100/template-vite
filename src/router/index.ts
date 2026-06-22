@@ -71,6 +71,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/im/chat.vue'),
     meta: { requiresAuth: true },
   },
+  {
+    path: '/live/list',
+    name: 'LiveList',
+    component: () => import('@/pages/live/list.vue'),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({

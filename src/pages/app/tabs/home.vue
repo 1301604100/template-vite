@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { showToast } from 'vant';
 import {
   getConsultExperts,
@@ -21,6 +22,8 @@ import type {
   HomeIconPage,
   LiveRoomItem,
 } from '@/types/home';
+
+const router = useRouter();
 
 const loading = ref(true);
 const iconPages = ref<HomeIconPage[]>([]);
@@ -77,7 +80,7 @@ function handleLiveItemClick(item: LiveRoomItem) {
 }
 
 function handleLiveMore() {
-  showToast('在线直播列表演示中');
+  router.push('/live/list');
 }
 
 function handleConsultClick(item: ConsultExpertItem) {

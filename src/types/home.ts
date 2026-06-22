@@ -44,6 +44,9 @@ export interface DailyFortune {
   dimensions: FortuneDimension[];
 }
 
+/** 直播间连麦状态 */
+export type LiveRoomStatus = '空闲中' | '咨询中';
+
 /** 直播间 */
 export interface LiveRoomItem {
   id: string;
@@ -52,6 +55,8 @@ export interface LiveRoomItem {
   category: string;
   expert_name: string;
   expert_avatar: string;
+  /** 连麦状态 */
+  status: LiveRoomStatus;
   /** 卡片背景渐变（无封面时） */
   gradient?: string;
 }

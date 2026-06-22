@@ -19,6 +19,7 @@ declare module 'vue' {
     HomeFortuneCard: typeof import('./../components/home/HomeFortuneCard.vue')['default']
     HomeKingKongGrid: typeof import('./../components/home/HomeKingKongGrid.vue')['default']
     HomeLiveSection: typeof import('./../components/home/HomeLiveSection.vue')['default']
+    LiveRoomListItem: typeof import('./../components/live/LiveRoomListItem.vue')['default']
     PrivacyAgreementSheet: typeof import('./../components/splash/PrivacyAgreementSheet.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
