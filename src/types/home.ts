@@ -28,6 +28,48 @@ export interface HomeBannerItem {
   gradient?: string;
 }
 
+/** 运势维度 */
+export interface FortuneDimension {
+  key: 'love' | 'career' | 'wealth' | 'social' | 'study';
+  label: string;
+  score: number;
+  trend?: 'up' | 'down';
+}
+
+/** 今日运势 */
+export interface DailyFortune {
+  nickname: string;
+  total_score: number;
+  summary: string;
+  dimensions: FortuneDimension[];
+}
+
+/** 直播间 */
+export interface LiveRoomItem {
+  id: string;
+  title: string;
+  cover_url: string;
+  category: string;
+  expert_name: string;
+  expert_avatar: string;
+  /** 卡片背景渐变（无封面时） */
+  gradient?: string;
+}
+
+/** 1v1 咨询达人 */
+export interface ConsultExpertItem {
+  expert_id: string;
+  expert_name: string;
+  expert_avatar: string;
+  online_status: '在线' | '忙碌' | '休息';
+  good_rate: number;
+  service_count: number;
+  description: string;
+  price_per_minute: number;
+  /** 认证标签 */
+  badge?: string;
+}
+
 /** 首页 API 通用响应 */
 export interface HomeApiResponse<T = unknown> {
   code: number;

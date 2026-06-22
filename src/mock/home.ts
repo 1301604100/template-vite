@@ -1,4 +1,11 @@
-import type { HomeApiResponse, HomeBannerItem, HomeIconPage } from '@/types/home';
+import type {
+  ConsultExpertItem,
+  DailyFortune,
+  HomeApiResponse,
+  HomeBannerItem,
+  HomeIconPage,
+  LiveRoomItem,
+} from '@/types/home';
 
 /**
  * @description 模拟网络延迟
@@ -90,4 +97,107 @@ export async function mockGetHomeBanners(): Promise<HomeApiResponse<HomeBannerIt
     message: 'success',
     data: sorted,
   };
+}
+
+const MOCK_FORTUNE: DailyFortune = {
+  nickname: '冰冰哈哈',
+  total_score: 73,
+  summary: '单身的你今天可能会感到感觉有些心累，忙',
+  dimensions: [
+    { key: 'love', label: '爱情', score: 90, trend: 'up' },
+    { key: 'career', label: '事业', score: 71 },
+    { key: 'wealth', label: '财富', score: 71 },
+    { key: 'social', label: '社交', score: 52, trend: 'down' },
+    { key: 'study', label: '学业', score: 52 },
+  ],
+};
+
+const MOCK_LIVE_ROOMS: LiveRoomItem[] = [
+  {
+    id: 'live_1',
+    title: '他内心真正的想法是什么？',
+    cover_url: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+    category: '塔罗',
+    expert_name: '暖暖咨询师',
+    expert_avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+    gradient: 'linear-gradient(135deg, #251845 0%, #4a2c7a 100%)',
+  },
+  {
+    id: 'live_2',
+    title: '他内心真正的想法是什么？',
+    cover_url: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+    category: '占星',
+    expert_name: '星语老师',
+    expert_avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+    gradient: 'linear-gradient(135deg, #1a1033 0%, #3d2566 100%)',
+  },
+];
+
+const MOCK_CONSULT_EXPERTS: ConsultExpertItem[] = [
+  {
+    expert_id: 'expert_1',
+    expert_name: '暖暖咨询师',
+    expert_avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+    online_status: '在线',
+    good_rate: 90,
+    service_count: 999,
+    description: '专业塔罗咨询师，帮助你找到内心的答案和方向感',
+    price_per_minute: 9.80,
+    badge: '金牌',
+  },
+  {
+    expert_id: 'expert_2',
+    expert_name: '暖暖咨询师',
+    expert_avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+    online_status: '在线',
+    good_rate: 90,
+    service_count: 999,
+    description: '专业塔罗梦境占卜，解读你内心最真实的渴望与困惑',
+    price_per_minute: 9.80,
+    badge: '金牌',
+  },
+  {
+    expert_id: 'expert_3',
+    expert_name: '暖暖咨询师',
+    expert_avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+    online_status: '忙碌',
+    good_rate: 90,
+    service_count: 999,
+    description: '专业塔罗梦境占卜，解读你内心最真实的渴望与困惑',
+    price_per_minute: 9.80,
+  },
+  {
+    expert_id: 'expert_4',
+    expert_name: '暖暖咨询师',
+    expert_avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+    online_status: '在线',
+    good_rate: 90,
+    service_count: 999,
+    description: '专业塔罗梦境占卜，解读你内心最真实的渴望与困惑',
+    price_per_minute: 9.80,
+  },
+];
+
+/**
+ * @description Mock 获取今日运势
+ */
+export async function mockGetDailyFortune(): Promise<HomeApiResponse<DailyFortune>> {
+  await delay();
+  return { code: 0, message: 'success', data: MOCK_FORTUNE };
+}
+
+/**
+ * @description Mock 获取在线直播列表
+ */
+export async function mockGetLiveRooms(): Promise<HomeApiResponse<LiveRoomItem[]>> {
+  await delay();
+  return { code: 0, message: 'success', data: MOCK_LIVE_ROOMS };
+}
+
+/**
+ * @description Mock 获取 1v1 咨询达人列表
+ */
+export async function mockGetConsultExperts(): Promise<HomeApiResponse<ConsultExpertItem[]>> {
+  await delay();
+  return { code: 0, message: 'success', data: MOCK_CONSULT_EXPERTS };
 }

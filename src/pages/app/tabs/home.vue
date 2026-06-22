@@ -1,28 +1,52 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { showToast } from 'vant';
-import { getHomeBanners, getHomeIcons } from '@/api/home';
+import {
+  getConsultExperts,
+  getDailyFortune,
+  getHomeBanners,
+  getHomeIcons,
+  getLiveRooms,
+} from '@/api/home';
 import HomeBannerSwipe from '@/components/home/HomeBannerSwipe.vue';
+import HomeConsultSection from '@/components/home/HomeConsultSection.vue';
+import HomeFortuneCard from '@/components/home/HomeFortuneCard.vue';
 import HomeKingKongGrid from '@/components/home/HomeKingKongGrid.vue';
-import type { HomeBannerItem, HomeIconItem, HomeIconPage } from '@/types/home';
+import HomeLiveSection from '@/components/home/HomeLiveSection.vue';
+import type {
+  ConsultExpertItem,
+  DailyFortune,
+  HomeBannerItem,
+  HomeIconItem,
+  HomeIconPage,
+  LiveRoomItem,
+} from '@/types/home';
 
 const loading = ref(true);
 const iconPages = ref<HomeIconPage[]>([]);
 const banners = ref<HomeBannerItem[]>([]);
+const fortune = ref<DailyFortune | null>(null);
+const liveRooms = ref<LiveRoomItem[]>([]);
+const consultExperts = ref<ConsultExpertItem[]>([]);
 
 /**
- * @description 并行加载金刚位与 Banner 数据
+ * @description 并行加载首页全部数据
  */
 async function loadHomeData() {
   loading.value = true;
   try {
-    const [iconsRes, bannersRes] = await Promise.all([getHomeIcons(), getHomeBanners()]);
-    if (iconsRes.code === 0) {
-      iconPages.value = iconsRes.data;
-    }
-    if (bannersRes.code === 0) {
-      banners.value = bannersRes.data;
-    }
+    const [iconsRes, bannersRes, fortuneRes, liveRes, consultRes] = await Promise.all([
+      getHomeIcons(),
+      getHomeBanners(),
+      getDailyFortune(),
+      getLiveRooms(),
+      getConsultExperts(),
+    ]);
+    if (iconsRes.code === 0) iconPages.value = iconsRes.data;
+    if (bannersRes.code === 0) banners.value = bannersRes.data;
+    if (fortuneRes.code === 0) fortune.value = fortuneRes.data;
+    if (liveRes.code === 0) liveRooms.value = liveRes.data;
+    if (consultRes.code === 0) consultExperts.value = consultRes.data;
   } finally {
     loading.value = false;
   }
@@ -40,6 +64,30 @@ function handleBannerClick(item: HomeBannerItem) {
   showToast(`查看活动：${item.title}`);
 }
 
+function handleFortuneClick() {
+  showToast('查看今日运势');
+}
+
+function handleFortuneMore() {
+  showToast('今日运势详情演示中');
+}
+
+function handleLiveItemClick(item: LiveRoomItem) {
+  showToast(`进入直播间：${item.title}`);
+}
+
+function handleLiveMore() {
+  showToast('在线直播列表演示中');
+}
+
+function handleConsultClick(item: ConsultExpertItem) {
+  showToast(`咨询 ${item.expert_name} 演示中`);
+}
+
+function handleConsultMore() {
+  showToast('1v1 咨询列表演示中');
+}
+
 onMounted(() => {
   loadHomeData();
 });
@@ -47,22 +95,45 @@ onMounted(() => {
 
 <template>
   <div class="home-page">
-    <header class="home-header">
-      <div class="home-brand">准准</div>
-      <button type="button" class="daily-sign-btn" @click="handleDailySignClick">
-        <span class="daily-sign-text">准准日签</span>
-        <span class="daily-sign-badge">免费</span>
-      </button>
-    </header>
+    <div class="home-scroll">
+      <header class="home-header">
+        <div class="home-brand">准准</div>
+        <button type="button" class="daily-sign-btn" @click="handleDailySignClick">
+          <span class="daily-sign-text">准准日签</span>
+          <span class="daily-sign-badge">免费</span>
+        </button>
+      </header>
 
-    <div v-if="loading" class="home-loading">
-      <van-loading type="spinner" color="#9b6fd0" />
+      <div v-if="loading" class="home-loading">
+        <van-loading type="spinner" color="#9b6fd0" />
+      </div>
+
+      <template v-else>
+        <HomeKingKongGrid :pages="iconPages" @click="handleIconClick" />
+        <HomeBannerSwipe :banners="banners" @click="handleBannerClick" />
+
+        <HomeFortuneCard
+          v-if="fortune"
+          :fortune="fortune"
+          @click="handleFortuneClick"
+          @more="handleFortuneMore"
+        />
+
+        <HomeLiveSection
+          v-if="liveRooms.length"
+          :rooms="liveRooms"
+          @more="handleLiveMore"
+          @item-click="handleLiveItemClick"
+        />
+
+        <HomeConsultSection
+          v-if="consultExperts.length"
+          :experts="consultExperts"
+          @more="handleConsultMore"
+          @consult-click="handleConsultClick"
+        />
+      </template>
     </div>
-
-    <template v-else>
-      <HomeKingKongGrid :pages="iconPages" @click="handleIconClick" />
-      <HomeBannerSwipe :banners="banners" @click="handleBannerClick" />
-    </template>
   </div>
 </template>
 
@@ -70,8 +141,16 @@ onMounted(() => {
 @import '@/assets/styles/variables.scss';
 
 .home-page {
-  min-height: calc(100vh - 100px);
+  height: calc(100vh - 100px);
   background: $dark-bg;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-scroll {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding-top: env(safe-area-inset-top);
 }
 
