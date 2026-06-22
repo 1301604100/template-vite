@@ -1,4 +1,4 @@
-## ADDED Requirements
+## MODIFIED Requirements
 
 ### Requirement: IM 聊天室布局
 
@@ -18,39 +18,6 @@
 
 - **WHEN** 用户进入聊天室
 - **THEN** 系统调用 Mock 接口加载该达人的历史消息，按时间顺序展示消息气泡
-
-### Requirement: 消息气泡展示
-
-系统 MUST 以气泡形式展示文字消息，区分用户与达人消息。
-
-#### Scenario: 用户消息气泡
-
-- **WHEN** 消息 sender_role 为用户
-- **THEN** 消息气泡右对齐，使用用户侧样式（如蓝色背景）
-
-#### Scenario: 达人消息气泡
-
-- **WHEN** 消息 sender_role 为达人
-- **THEN** 消息气泡左对齐，展示达人头像，使用达人侧样式（如白色/灰色背景）
-
-### Requirement: 发送文字消息
-
-系统 MUST 支持在聊天室发送文字消息（Mock 模式）。
-
-#### Scenario: 发送消息
-
-- **WHEN** 用户在输入框输入文字并点击发送
-- **THEN** 系统将消息立即插入消息列表（发送中状态），Mock 接口返回成功后更新为已发送状态
-
-#### Scenario: 空消息不可发送
-
-- **WHEN** 用户输入框为空时点击发送
-- **THEN** 系统不执行发送操作
-
-#### Scenario: 模拟达人回复
-
-- **WHEN** 用户发送消息成功后
-- **THEN** 系统在约 1 秒后自动插入一条 Mock 达人回复消息，模拟对话效果
 
 ### Requirement: 聊天室导航栏
 

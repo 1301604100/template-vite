@@ -16,6 +16,11 @@ declare module 'vue' {
     ConsultExpertCard: typeof import('./../components/consult/ConsultExpertCard.vue')['default']
     ConsultFilterPopup: typeof import('./../components/consult/ConsultFilterPopup.vue')['default']
     DemoEntryCard: typeof import('./../components/demo/DemoEntryCard.vue')['default']
+    ExpertConsultSection: typeof import('./../components/expert/ExpertConsultSection.vue')['default']
+    ExpertProfileHeader: typeof import('./../components/expert/ExpertProfileHeader.vue')['default']
+    ExpertReviewList: typeof import('./../components/expert/ExpertReviewList.vue')['default']
+    ExpertServiceList: typeof import('./../components/expert/ExpertServiceList.vue')['default']
+    ExpertTextPackageList: typeof import('./../components/expert/ExpertTextPackageList.vue')['default']
     HomeBannerSwipe: typeof import('./../components/home/HomeBannerSwipe.vue')['default']
     HomeConsultSection: typeof import('./../components/home/HomeConsultSection.vue')['default']
     HomeFortuneCard: typeof import('./../components/home/HomeFortuneCard.vue')['default']
@@ -39,7 +44,9 @@ declare module 'vue' {
     VanPullRefresh: typeof import('vant/es')['PullRefresh']
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
+    VanTab: typeof import('vant/es')['Tab']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
+    VanTabs: typeof import('vant/es')['Tabs']
   }
 }

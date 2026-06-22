@@ -89,6 +89,10 @@ function handleConsultClick(item: ConsultExpertItem) {
   router.push(`/im/chat/${item.expert_id}`);
 }
 
+function handleConsultCardClick(item: ConsultExpertItem) {
+  router.push(`/expert/${item.expert_id}`);
+}
+
 function handleConsultMore() {
   router.push('/app/qa');
 }
@@ -135,6 +139,7 @@ onMounted(() => {
           v-if="consultExperts.length"
           :experts="consultExperts"
           @more="handleConsultMore"
+          @card-click="handleConsultCardClick"
           @consult-click="handleConsultClick"
         />
       </template>

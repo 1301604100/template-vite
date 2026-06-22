@@ -8,6 +8,7 @@ defineProps<{
 
 const emit = defineEmits<{
   more: [];
+  'card-click': [item: ConsultExpertItem];
   'consult-click': [item: ConsultExpertItem];
 }>();
 </script>
@@ -28,6 +29,7 @@ const emit = defineEmits<{
         :key="expert.expert_id"
         :expert="expert"
         variant="home"
+        @click="emit('card-click', $event)"
         @consult="emit('consult-click', $event)"
       />
     </div>

@@ -1,10 +1,4 @@
-# app-consult-tab Specification
-
-## Purpose
-
-定义 App 咨询 Tab（1v1 咨询达人列表）的展示、排序筛选、导航与 Mock 数据规范。
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: 咨询 Tab 列表展示
 
@@ -59,27 +53,3 @@
 
 - **WHEN** 咨询 Tab 数据尚未加载完成
 - **THEN** 系统展示加载中状态
-
-### Requirement: 咨询 Tab Mock 数据
-
-系统 MUST 使用 Mock 数据模拟咨询 Tab 达人列表。
-
-#### Scenario: Mock 数据加载
-
-- **WHEN** 咨询 Tab 初始化
-- **THEN** 系统调用 Mock 接口获取达人列表，至少返回 6 条记录
-
-#### Scenario: 数据字段
-
-- **WHEN** Mock 返回达人数据
-- **THEN** 每项包含 expert_id、expert_name、expert_avatar、online_status、good_rate、service_count、description、price_per_minute、gender 字段
-
-#### Scenario: IM 兼容性
-
-- **WHEN** Mock 返回达人 expert_id
-- **THEN** expert_id 与 IM Mock 中 ExpertInfo 的 ID 一致，确保聊天页可加载
-
-#### Scenario: 聊天页返回来源页
-
-- **WHEN** 用户从咨询 Tab 或首页进入 IM 聊天后点击返回
-- **THEN** 系统通过 `router.back()` 返回进入聊天前的页面，而非固定跳转消息 Tab

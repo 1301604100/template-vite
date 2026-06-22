@@ -85,6 +85,16 @@ function handleBack() {
   }
 }
 
+/**
+ * @description 进入达人主页，标记来源为聊天页以便返回时复用已有聊天栈
+ */
+function goToExpertProfile() {
+  router.push({
+    path: `/expert/${expertId}`,
+    query: { from: 'chat' },
+  });
+}
+
 onMounted(() => {
   loadData();
 });
@@ -102,13 +112,14 @@ onMounted(() => {
     </van-nav-bar>
 
     <!-- 达人信息卡片 -->
-    <div v-if="expert" class="expert-card">
+    <div v-if="expert" class="expert-card" @click="goToExpertProfile">
       <van-image
         round
         width="80px"
         height="80px"
         :src="expert.expert_avatar"
         fit="cover"
+        class="expert-avatar-clickable"
       />
       <div class="expert-info">
         <div class="expert-name">{{ expert.expert_name }}</div>
@@ -127,6 +138,7 @@ onMounted(() => {
         :message="msg"
         :expert-avatar="expert?.expert_avatar"
         :user-avatar="userStore.userInfo?.avatar"
+        @avatar-click="goToExpertProfile"
       />
     </div>
 
@@ -171,6 +183,11 @@ onMounted(() => {
   background: #fff;
   border-bottom: 1px solid #ebedf0;
   gap: 16px;
+  cursor: pointer;
+}
+
+.expert-avatar-clickable {
+  flex-shrink: 0;
 }
 
 .expert-info {

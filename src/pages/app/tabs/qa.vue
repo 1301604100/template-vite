@@ -91,6 +91,10 @@ function handleVoiceConsultClick() {
   showToast('连麦咨询说明演示中');
 }
 
+function goToProfile(expert: ConsultExpertItem) {
+  router.push(`/expert/${expert.expert_id}`);
+}
+
 function goToChat(expert: ConsultExpertItem) {
   router.push(`/im/chat/${expert.expert_id}`);
 }
@@ -144,7 +148,7 @@ onMounted(() => {
           :key="expert.expert_id"
           :expert="expert"
           variant="tab"
-          @click="goToChat"
+          @click="goToProfile"
           @consult="goToChat"
         />
       </div>

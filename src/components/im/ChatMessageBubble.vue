@@ -7,6 +7,10 @@ defineProps<{
   userAvatar?: string;
 }>();
 
+const emit = defineEmits<{
+  'avatar-click': [];
+}>();
+
 function formatTime(time: string): string {
   if (!time) return '';
   const date = new Date(time);
@@ -31,7 +35,8 @@ function formatTime(time: string): string {
       height="72px"
       :src="expertAvatar"
       fit="cover"
-      class="avatar"
+      class="avatar avatar-clickable"
+      @click.stop="emit('avatar-click')"
     />
 
     <div class="bubble-content">
@@ -91,6 +96,10 @@ function formatTime(time: string): string {
 
 .avatar {
   flex-shrink: 0;
+}
+
+.avatar-clickable {
+  cursor: pointer;
 }
 
 .bubble-content {

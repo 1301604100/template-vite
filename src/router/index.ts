@@ -77,6 +77,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/live/list.vue'),
     meta: { requiresAuth: true },
   },
+  {
+    path: '/expert/:expertId',
+    name: 'ExpertProfile',
+    component: () => import('@/pages/expert/profile.vue'),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
